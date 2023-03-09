@@ -15,9 +15,9 @@ WORKDIR /tmp
 RUN mvn clean package -DskipTests=true
 
 FROM adoptopenjdk/openjdk11
-ENV JAR_FILE=target/OrdersService*.jar
+ENV JAR_FILE=target/*.jar
 COPY --from=maven-builder /tmp/$JAR_FILE /opt/app/
-RUN mv /opt/app/OrdersService-*.jar /opt/app/app.jar
+RUN mv /opt/app/*.jar /opt/app/app.jar
 WORKDIR /opt/app
 ENV PORT 8083
 EXPOSE 8083
