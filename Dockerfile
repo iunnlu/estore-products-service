@@ -19,6 +19,6 @@ ENV JAR_FILE=target/*.jar
 COPY --from=maven-builder /tmp/$JAR_FILE /opt/app/
 RUN mv /opt/app/*.jar /opt/app/app.jar
 WORKDIR /opt/app
-ENV PORT 8082
-EXPOSE 8082
+ENV PORT 8083
+EXPOSE 8083
 ENTRYPOINT ["java","-jar","app.jar"]
