@@ -1,0 +1,38 @@
+eureka:
+  client:
+    service-url:
+      defaultZone: ${EUREKA_URL:http://localhost:8761/eureka}
+  instance:
+    instance-id: ${spring.application.name}:${instanceId:${random.value}}
+spring:
+  datasource:
+    url: jdbc:postgresql://${POSTGRE_URL:3.64.178.33:8080}/products
+    username: postgres
+    password: user
+    driver-class-name: org.postgresql.Driver
+  application:
+    name: products-service
+  h2:
+    console:
+      enabled: true
+      settings:
+        web-allow-others: true
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+server:
+  port: 8083
+  error:
+    include-message: always
+    include-binding-errors: always
+
+axon:
+  eventhandling:
+    processors:
+      product-group:
+        mode: subscribing
+  axonserver:
+    servers: ${AXON_URL:localhost:8124}
